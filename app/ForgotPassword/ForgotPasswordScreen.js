@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { SafeAreaView, View, TextInput, Text, TouchableOpacity, StyleSheet, Platform, Dimensions } from 'react-native';
+import { SafeAreaView, View, TextInput, Text, TouchableOpacity, StyleSheet, Platform, Dimensions, Image } from 'react-native';
 
 const ForgotPasswordScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');
@@ -12,8 +12,19 @@ const ForgotPasswordScreen = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.container}>
+      {/* Top Blue Container */}
+      <View style={styles.topContainer} />
+
       <View style={styles.centered}>
         <View style={styles.formContainer}>
+          <View style={styles.imageUriContainer}>
+            <Image
+              source={{ uri: "https://img.icons8.com/color/48/000000/forgot-password.png" }} // Replace with your desired icon
+              style={styles.imageUri}
+              resizeMode="contain"
+            />
+          </View>
+
           <Text style={styles.title}>Forgot Password</Text>
 
           <TextInput
@@ -35,6 +46,9 @@ const ForgotPasswordScreen = ({ navigation }) => {
           </TouchableOpacity>
         </View>
       </View>
+
+      {/* Bottom Blue Container */}
+      <View style={styles.bottomContainer} />
     </SafeAreaView>
   );
 };
@@ -44,14 +58,32 @@ const { width, height } = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#EFF6FF',
-    justifyContent: 'center',
-    padding: 16,
-    paddingTop: Platform.OS === 'ios' ? 50 : 16, // Extra padding for iOS status bar
+    backgroundColor: '#f8f9fa',
+  },
+  topContainer: {
+    height: '10%',
+    borderBottomEndRadius: 70,
+    width: '70%', // Full width
+    backgroundColor: '#1996D3',
+    position: 'absolute', // Fix to top
+    top: 0,
+    zIndex: 1, // Ensure it's above other content
+  },
+  bottomContainer: {
+    height: '10%',
+    width: '70%', // Full width
+    borderTopLeftRadius: 70,
+    backgroundColor: '#1996D3',
+    position: 'absolute', // Fix to bottom
+    bottom: 0,
+    right: 0,
+    zIndex: -1, // Ensure it's above other content
   },
   centered: {
+    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    paddingHorizontal: 16,
   },
   formContainer: {
     width: '100%',
@@ -65,10 +97,18 @@ const styles = StyleSheet.create({
     shadowRadius: 8,
     elevation: 4, // Shadow effect on Android
   },
+  imageUriContainer: {
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  imageUri: {
+    width: 100,
+    height: 100,
+  },
   title: {
     fontSize: 26,
     fontWeight: 'bold',
-    color: 'lightblue',
+    color: '#074B7C',
     marginBottom: 24,
     textAlign: 'center',
   },
@@ -76,16 +116,16 @@ const styles = StyleSheet.create({
     width: '100%',
     padding: 14,
     marginBottom: 16,
-    borderColor: '#93C5FD',
+    borderColor: '#1996D3',
     borderWidth: 1,
-    borderRadius: 8,
+    borderRadius: 10,
     backgroundColor: '#F3F4F6',
   },
   button: {
     width: '100%',
     padding: 14,
-    backgroundColor: 'lightblue',
-    borderRadius: 8,
+    backgroundColor: '#1996D3',
+    borderRadius: 12,
     marginBottom: 16,
     alignItems: 'center',
     justifyContent: 'center',

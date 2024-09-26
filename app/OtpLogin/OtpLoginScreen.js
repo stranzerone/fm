@@ -95,6 +95,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right:0,
     bottom: 0, // Ensure it sticks to the bottom
+    zIndex:-1
   },
   imageUriContainer: {
     height: '30%', // Adjusted to leave space for the blue containers
