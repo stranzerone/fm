@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Facility_Manager",
-    "slug": "Facility_Manager",
+    "name": "CameraApp",
+    "slug": "CameraApp",
     "version": "1.0.0",
     "orientation": "default",
     "icon": "./assets/icon.png",
@@ -12,12 +12,18 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,  
+      "infoPlist": {
+        "NSCameraUsageDescription": "We need access to your camera for scanning QR codes."
+      }
     },
     "android": {
+      "permissions": [
+        "CAMERA"
+      ],
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#ffffff" 
       }
     },
     "web": {

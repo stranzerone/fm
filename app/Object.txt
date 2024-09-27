@@ -1,0 +1,82 @@
+{
+    "status": "success",
+    "data": [
+        {
+            "as": {
+                "_ID": 14148236,
+                "_LABELS": [
+                    "ASSET"
+                ],
+                "updated_at": "2024-09-19 09:52:10",
+                "site_uuid": "415a06d6-9059-4233-b89d-7953ff7ba79d",
+                "created_at": "2024-09-19 09:48:21",
+                "Sequence No": "AST-20655",
+                "_access_config_allowed": [
+                    "info",
+                    "complaints",
+                    "addcomplaint",
+                    "surveys",
+                    "breakdown",
+                    "workorders"
+                ],
+                "_access_config_accessibility": "public",
+                "created_by": 315086,
+                "uuid": "bac558c2-356c-424b-8e8e-552df3c56d05",
+                "Name": "computer 1"
+            },
+            "wo": {
+                "_ID": 14066276,
+                "_LABELS": [
+                    "WORKORDER"
+                ],
+                "Assigned": [
+                    286420,
+                    324665
+                ],
+                "Status": "OPEN",
+                "AssignedTeam": [
+                    15665544
+                ],
+                "Priority": "Normal",
+                "breakdown": false,
+                "created_at": "2024-09-23 06:40:14",
+                "Sequence No": "WO-31719",
+                "created_by": 286420,
+                "uuid": "3cf20c8a-38b8-4778-8135-b2578cd7ce08",
+                "Name": "computer service",
+                "category_uuid": "ca47eb9a-106b-4991-a7e6-b4e6886e211e",
+                "Type": "PLANNED",
+                "updated_at": "2024-09-23 06:46:12",
+                "user_id": 324665,
+                "pm_uuid": "ee898a8b-391d-4041-846d-08d471080697",
+                "updated_by": 286420,
+                "asset_uuid": "bac558c2-356c-424b-8e8e-552df3c56d05",
+                "flag_pm": true,
+                "Due Date": "2024-09-23 12:10:14"
+            },
+            "st": {
+                "_ID": 6602,
+                "_LABELS": [
+                    "PPMSTATUS"
+                ],
+                "Type": "OPEN",
+                "created_at": "2021-08-27 15:17:11",
+                "created_by": 5487,
+                "uuid": "bac5f1f1-78c3-4d51-85cf-249e2f09b775",
+                "Allowed": [
+                    "OPEN",
+                    "CANCELLED",
+                    "STARTED",
+                    "HOLD"
+                ],
+                "Name": "OPEN",
+                "order": 1
+            },
+            "el": []
+        }
+    ],
+    "message": "1, Record found !",
+    "metadata": {
+        "count": 1
+    }
+}

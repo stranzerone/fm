@@ -8,6 +8,7 @@ import { StatusBar } from 'expo-status-bar';
 import OtpLogin from './app/OtpLogin/OtpLoginScreen';
 import NewLoginScreen from './app/SamplePages/LoginUi';
 import OtpEnterPage from './app/OtpLogin/OTPenterPage';
+import MainPage from './app/BarCodeTabs/BarCodeTopTabs';
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -45,6 +46,8 @@ export default function App() {
         <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
         <Stack.Screen name="OtpLogin" component={OtpLogin}  />
         <Stack.Screen name="OtpEnter" component={OtpEnterPage}  />
+        <Stack.Screen name="WorkOrders" component={MainPage} options={{ headerShown: true }}  />
+
     
       </Stack.Navigator>
     </NavigationContainer>

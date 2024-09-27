@@ -34,7 +34,7 @@ const MyTabs = () => {
       style={styles.logoutButton}
     >
       <Text style={styles.logoutText}>
-        <Icon name="sign-out" size={24} color="#074B7C" /> {/* Logout icon */}
+        <Icon name="sign-out" size={24} color="midnightblue" /> {/* Logout icon */}
       </Text>
     </TouchableOpacity>
   );
@@ -76,11 +76,6 @@ const MyTabs = () => {
         </View>
       </Modal>
 
-      {/* Active Tab Name Display */}
-      <View style={styles.activeTabContainer}>
-        <Text style={styles.activeTabText}>{activeTabName}</Text>
-      </View>
-
       {/* Bottom Tab Navigator */}
       <Tab.Navigator 
         screenOptions={({ route }) => ({
@@ -89,13 +84,12 @@ const MyTabs = () => {
           tabBarLabelStyle: { display: 'none' }, // Hide tab labels
           tabBarStyle: {
             position: 'absolute',
-            bottom: 0,
-            left: 0,
-            right: 0,
+            bottom: 20,
+            left: 20,
+            right: 20,
             backgroundColor: '#1996D3',
-            borderTopLeftRadius: 20,
-            borderTopRightRadius: 20,
-            height: 50,
+            borderRadius: 20,
+            height: 70,
             ...styles.shadow, // Add shadow if necessary
             elevation: 5, // For Android shadow
           },
@@ -115,9 +109,12 @@ const MyTabs = () => {
               iconName = 'cogs';
             }
 
+            // Circular background for active tabs
+            const backgroundColor = focused ? '#ffffff' : 'transparent';
+
             return (
-              <View style={styles.iconContainer}>
-                <Icon name={iconName} color={color} size={size || 28} style={styles.icon} />
+              <View style={[styles.iconContainer, { backgroundColor }]}>
+                <Icon name={iconName} color={focused ? '#1996D3' : color} size={size || 28} />
               </View>
             );
           },
@@ -164,12 +161,11 @@ const styles = StyleSheet.create({
   },
   logoutButton: {
     marginRight: 15,
-    
     flexDirection: 'row',
     alignItems: 'center',
   },
   logoutText: {
-    color: 'white',
+    color: '#007BFF',
     fontSize: 16,
     marginLeft: 5,
   },
@@ -209,38 +205,14 @@ const styles = StyleSheet.create({
   buttonText: {
     color: 'white',
     fontSize: 18,
-    fontWeight: "bold"
-  },
-  activeTabContainer: {
-    position: 'absolute',
-    bottom: 40, // Position directly above the tab bar
-    left: 0,
-    right: 0,
-    alignItems: 'center',
-    justifyContent: 'center',
-    zIndex: 1, // Ensure it's above the tab navigator
-  },
-  activeTabText: {
-    fontSize: 18,
-    backgroundColor: "white",
-    padding: 4,
-    paddingHorizontal: 15,
-    borderTopEndRadius: 40,
-    borderBottomLeftRadius: 20, // Added bottom left radius
-    borderBottomRightRadius: 20, // Added bottom right radius
-    width: "auto",
     fontWeight: 'bold',
-    color: '#1996D3', // Changed color to match background for better contrast
-},
-
+  },
   iconContainer: {
     alignItems: 'center',
     justifyContent: 'center',
-    height: 40,
-    width: 40,
-  },
-  icon: {
-    color: "white"
+    height: 50,
+    width: 50,
+    borderRadius: 25,
   },
   shadow: {
     shadowColor: '#000',

@@ -20,10 +20,10 @@ console.log(email,password)
     // Check if the response is successful (status 200)
     if (response.status === 200) {
       // Store the token and user info in AsyncStorage
-      await AsyncStorage.setItem('userInfo', JSON.stringify(response.data));
+      await AsyncStorage.setItem('userInfo', JSON.stringify(response));
       
       // Return the entire response, not just the status
-      return response;
+      return response.data;
     } else {
       // Handle other statuses (e.g., 401 unauthorized)
       console.error('Unexpected response status:', response.status);

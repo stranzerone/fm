@@ -1,10 +1,16 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { StyleSheet, View, Button } from 'react-native';
+import { useNavigation } from '@react-navigation/native'; // Import navigation hook
 
-const Dashboard = () => {
+const CameraPage = () => {
+  const navigation = useNavigation(); // Get navigation object
+
   return (
     <View style={styles.container}>
-      <Text style={styles.welcomeText}>Welcome to Dashboard</Text>
+      <Button
+        title="Go to Main Page"
+        onPress={() => navigation.navigate('WorkOrders')} // Navigate to MainPage on button press
+      />
     </View>
   );
 };
@@ -12,17 +18,9 @@ const Dashboard = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#EFF6FF', // Light blue background color
-    padding: 16, // Add some padding for better responsiveness
-  },
-  welcomeText: {
-    fontSize: 28, // Increased font size for better visibility
-    fontWeight: 'bold', // Bold text
-    color: '#1E3A8A', // Dark blue text color
-    textAlign: 'center', // Center text alignment
+    justifyContent: 'center', // Center the button vertically
+    alignItems: 'center', // Center the button horizontally
   },
 });
 
-export default Dashboard;
+export default CameraPage;
