@@ -1,14 +1,35 @@
-// FilterOptions.js
-import React from 'react';
-import { View, Text, TouchableOpacity, FlatList, StyleSheet } from 'react-native';
+import React, { useEffect, useRef } from 'react';
+import { View, Text, TouchableOpacity, FlatList, StyleSheet, Animated } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 const FilterOptions = ({ filters, selectedFilter, applyFilter, closeFilter }) => {
+  const slideAnim = useRef(new Animated.Value(300)).current; // Start position for slide-in animation
+
+  useEffect(() => {
+    // Slide up animation when the component mounts
+    Animated.timing(slideAnim, {
+      toValue: 0, // End position at the top (0 means fully visible)
+      duration: 300, // Animation duration
+      useNativeDriver: true, // Use native driver for smoother performance
+    }).start();
+  }, [slideAnim]);
+
+  const handleClose = () => {
+    // Slide down animation when closing
+    Animated.timing(slideAnim, {
+      toValue: 300, // Slide it back to the starting point (300 means off-screen)
+      duration: 300,
+      useNativeDriver: true,
+    }).start(() => {
+      closeFilter(); // Call closeFilter after the animation completes
+    });
+  };
+
   return (
-    <View style={styles.filterPopup}>
+    <Animated.View style={[styles.filterPopup, { transform: [{ translateY: slideAnim }] }]}>
       <View style={styles.titleContainer}>
         <Text style={styles.modalTitle}>Filter by Status</Text>
-        <TouchableOpacity onPress={closeFilter}>
+        <TouchableOpacity onPress={handleClose}>
           <Icon name="close" size={20} color="#074B7C" style={styles.closeIcon} />
         </TouchableOpacity>
       </View>
@@ -23,12 +44,12 @@ const FilterOptions = ({ filters, selectedFilter, applyFilter, closeFilter }) =>
           >
             <Text style={[styles.filterText, selectedFilter === item && styles.selectedText]}>{item}</Text>
             {selectedFilter === item && (
-              <Icon name="check" size={16} color="#fff" style={styles.checkIcon} />
+              <Icon name="check" size={18} color="#fff" style={styles.checkIcon} />
             )}
           </TouchableOpacity>
         )}
       />
-    </View>
+    </Animated.View>
   );
 };
 
@@ -36,13 +57,17 @@ const FilterOptions = ({ filters, selectedFilter, applyFilter, closeFilter }) =>
 const styles = StyleSheet.create({
   filterPopup: {
     position: 'absolute',
-    top: 50,
-    right: 25,
-    width: 250,
-    padding: 20,
+    bottom: 0, // Position it at the bottom initially
+    width: '100%',
+    padding: 15,
     backgroundColor: '#fff',
-    borderRadius: 10,
+    borderTopLeftRadius: 15,
+    borderTopRightRadius: 15,
     elevation: 5,
+    shadowColor: '#000',
+    shadowOpacity: 0.2,
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 5,
     zIndex: 10,
   },
   titleContainer: {
@@ -50,6 +75,9 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     marginBottom: 10,
+    paddingBottom: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#ddd',
   },
   modalTitle: {
     fontSize: 18,
@@ -60,24 +88,30 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   filterOption: {
-    paddingVertical: 15,
-    borderBottomWidth: 1,
-    borderBottomColor: '#ddd',
+    paddingVertical: 12,
+    paddingHorizontal: 10,
+    marginBottom: 8,
+    backgroundColor: '#f5f5f5',
+    borderRadius: 8,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+    borderWidth: 1,
+    borderColor: '#ddd',
+    elevation: 1,
   },
   filterText: {
     fontSize: 16,
-    color: '#074B7C', // Default text color
+    color: '#333',
   },
   selectedFilter: {
-    padding: 9,
-    backgroundColor: '#074B7C', // Change the background color of the selected filter
-    borderRadius: 5,
+    backgroundColor: '#074B7C',
+    borderColor: '#074B7C',
+    borderWidth: 1,
   },
   selectedText: {
-    color: 'white', // Change font color for the selected filter
+    color: '#fff',
+    fontWeight: 'bold',
   },
   checkIcon: {
     marginLeft: 10,

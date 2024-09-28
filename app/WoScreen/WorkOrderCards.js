@@ -21,12 +21,18 @@ const getStatusColor = (status) => {
   switch (status) {
     case 'Open':
       return '#3498db'; // Blue for open status
-    case 'In Progress':
+    case 'Started':
       return '#f39c12'; // Orange for in-progress status
-    case 'Closed':
-      return '#2ecc71'; // Green for closed status
+    case 'Completed':
+      return '#2ecc71'; // Green for completed status
+    case 'Hold':
+      return '#f1c40f'; // Yellow for hold status
+    case 'Cancelled':
+      return '#e74c3c'; // Red for cancelled status
+    case 'Reopen':
+      return '#9b59b6'; // Purple for reopen status
     default:
-      return '#999'; // Gray for default status
+      return '#999'; // Gray for unknown status
   }
 };
 
@@ -43,7 +49,7 @@ const WorkOrderCard = ({ workOrder }) => {
 
       {/* Name and Priority Row */}
       <View style={styles.row}>
-        <Icon name="briefcase" size={14} color="#1996D3" />
+        <Icon name="cogs" size={14} color="#1996D3" />
         <Text style={styles.title}>{workOrder.WOName}</Text>
       </View>
 
@@ -60,7 +66,7 @@ const WorkOrderCard = ({ workOrder }) => {
           <Text style={styles.details}>{workOrder.creationDate}</Text>
         </View>
         <View style={styles.statusBadge}>
-          <Text style={[styles.statusText,{fontWeight:"900"} ,{ color: getStatusColor(workOrder.status) }]}>{workOrder.status}</Text>
+          <Text style={[styles.statusText, { color: getStatusColor(workOrder.status) }]}>{workOrder.status}</Text>
         </View>
       </View>
     </View>
@@ -119,7 +125,6 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   statusText: {
-    color: '#fff',
     fontWeight: 'bold',
   },
 });

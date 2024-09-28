@@ -54,6 +54,10 @@ const MyTabs = () => {
       >
         <View style={styles.modalOverlay}>
           <View style={styles.modalContent}>
+            <Text>
+            <Icon name="exclamation-triangle" size={40} color="#FF5722" /> {/* Warning Icon */}
+           </Text>
+            <Text style={styles.modalText}>You will be logged out.</Text>
             <Text style={styles.modalText}>Are you sure you want to log out?</Text>
             <View style={styles.modalButtons}>
               <TouchableOpacity
@@ -164,7 +168,6 @@ const styles = StyleSheet.create({
   },
   logoutButton: {
     marginRight: 15,
-    
     flexDirection: 'row',
     alignItems: 'center',
   },
@@ -182,13 +185,13 @@ const styles = StyleSheet.create({
   modalContent: {
     width: 300,
     padding: 20,
-    backgroundColor: 'white',
+    backgroundColor: 'lightblue',
     borderRadius: 10,
     alignItems: 'center',
   },
   modalText: {
     fontSize: 18,
-    marginBottom: 20,
+    marginBottom: 10,
     textAlign: 'center',
   },
   modalButtons: {
@@ -231,8 +234,7 @@ const styles = StyleSheet.create({
     width: "auto",
     fontWeight: 'bold',
     color: '#1996D3', // Changed color to match background for better contrast
-},
-
+  },
   iconContainer: {
     alignItems: 'center',
     justifyContent: 'center',

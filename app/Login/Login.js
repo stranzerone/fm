@@ -40,10 +40,10 @@ const NewLoginScreen = () => {
       const response = await loginApi(email, password);
 
       // Debug: Log the full response
-      console.log('Login Response:', response);
+      console.log('Login Response:', response.data.api_token);
 
       // Check the status and navigate
-      if (response && response.status === 200) {
+      if (response && response.data.api_token ) {
         // Save user info to AsyncStorage
         await AsyncStorage.setItem('userInfo', JSON.stringify(response.data)); // Store user info
         setEmail(''); // Clear email field
