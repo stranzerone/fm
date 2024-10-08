@@ -2,55 +2,45 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LoginScreen from './app/Login/Login';
-import ForgotPasswordScreen from './app/ForgotPassword/ForgotPasswordScreen';
+import ForgotPasswordScreen from './app/Login/ForgotPassword/ForgotPasswordScreen';
 import MyTabs from './app/BottomTabs/BottomTabsNav';
 import { StatusBar } from 'expo-status-bar';
-import OtpLogin from './app/OtpLogin/OtpLoginScreen';
-import NewLoginScreen from './app/SamplePages/LoginUi';
-import OtpEnterPage from './app/OtpLogin/OTPenterPage';
-import MainPage from './app/BarCodeTabs/BarCodeTopTabs';
+import OtpLogin from './app/Login/OtpLogin/OtpLoginScreen';
+import OtpEnterPage from './app/Login/OtpLogin/OTPenterPage';
+import AddWorkOrderForm from './app/AddWorkOrders/AddWorkOrderScreen';
+import { PermissionsProvider } from './app/GlobalVariables/PermissionsContext';
+import ProgressTopTabs from './app/WorkOrderProgress/ProgressTopTabs';
 const Stack = createNativeStackNavigator();
 
 export default function App() {
-
- 
-
   return (
-    <>
+    <PermissionsProvider>
+      <StatusBar
+        barStyle="default"
+        translucent={true}
+      />
+      <NavigationContainer>
+        <Stack.Navigator
+          screenOptions={{
+            headerStyle: { backgroundColor: '#1996D3' },
+            headerTintColor: '#FFFFFF',
+          }}
+        >
+          <Stack.Screen 
+            name="Login" 
+            options={{ headerLeft: null }}
+          >
+            {props => <LoginScreen {...props} />}
+          </Stack.Screen>
+          <Stack.Screen name="Home" component={MyTabs} options={{ headerShown: false }} />
+          <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
+          <Stack.Screen name="OtpLogin" component={OtpLogin} />
+          <Stack.Screen name="OtpEnter" component={OtpEnterPage} />
+          <Stack.Screen name="AddWorkOrders" component={AddWorkOrderForm} options={{ headerShown: false }} />
+          <Stack.Screen name="WOsInfo" component={ProgressTopTabs} options={{ headerShown: false }} />
 
-<StatusBar barStyle="light-content" backgroundColor="#1996D3" />
-    <NavigationContainer>
-
-      <Stack.Navigator
-      screenOptions={
-      {  headerStyle: { backgroundColor: '#1996D3' }, // Set your desired color here
-        headerTintColor: '#FFFFFF', // Optional: Set the color of the header text and icons
-    }
-      }
-      >
-
-  <Stack.Screen 
-    name="Login" 
-    options={{ headerLeft: null }} // Hide the back button
-  >
-    {props => <LoginScreen {...props} onLogin={() => setIsLoggedIn(true)} />}
-  </Stack.Screen>
-  {/* Other screens */}
-
-
-    
-        <Stack.Screen name="Home" component={MyTabs} options={{ headerShown: false }} />
-
-         
-   
-        <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
-        <Stack.Screen name="OtpLogin" component={OtpLogin}  />
-        <Stack.Screen name="OtpEnter" component={OtpEnterPage}  />
-        <Stack.Screen name="WorkOrders" component={MainPage} options={{ headerShown: true }}  />
-
-    
-      </Stack.Navigator>
-    </NavigationContainer>
-    </>
+        </Stack.Navigator>
+      </NavigationContainer>
+    </PermissionsProvider>
   );
 }

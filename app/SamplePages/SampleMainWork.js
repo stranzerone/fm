@@ -8,7 +8,7 @@ import { fetchServiceRequests } from '../SamplePages/SampleApi';
 
 const WorkOrderPage = () => {
   const [filterVisible, setFilterVisible] = useState(false); // Filter options visibility
-  const [selectedFilter, setSelectedFilter] = useState('OPEN'); // Selected filter state
+  const [selectedFilter, setSelectedFilter] = useState('All'); // Selected filter state
   const [loading, setLoading] = useState(true); // Loading state
   const [workOrders, setWorkOrders] = useState([]); // Work orders data
   const [selectedWOIndex, setSelectedWOIndex] = useState(null); // Track the selected work order index
@@ -18,19 +18,20 @@ const WorkOrderPage = () => {
   const indicatorAnim = useRef(new Animated.Value(0)).current; // Animation value
 
   // Filter options
-  const filters = [ 'OPEN', 'STARTED', 'COMPLETED', 'HOLD', 'CANCELLED', 'REOPEN'];
+  const filters = ['ALL', 'OPEN', 'STARTED', 'COMPLETED', 'HOLD', 'CANCELLED', 'REOPEN'];
 
   // Fetching work order data
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true); // Set loading to true while fetching
-      const fetchedWorkOrders = await fetchServiceRequests(selectedFilter);
+      const fetchedWorkOrders = await fetchServiceRequests();
+      console.log(fetchedWorkOrders)
       setWorkOrders(fetchedWorkOrders);
       setLoading(false); // Set loading to false after fetching
     };
 
     fetchData();
-  }, [selectedFilter]);
+  }, []);
 
   const applyFilter = (filter) => {
     setSelectedFilter(filter);
@@ -76,19 +77,16 @@ const WorkOrderPage = () => {
         </View>
       ) : (
         <View>
-          {/* Conditional rendering based on the length of workOrders */}
-        
-            <FlatList
-              data={workOrders}
-              keyExtractor={(item) => item.wo['Sequence No']} // Ensure each item has a unique key
-              renderItem={({ item, index }) => ( // Destructure item and index
-                <TouchableOpacity onPress={() => handleWorkOrderPress(index)}>
-                  <WorkOrderCard workOrder={item} />
-                </TouchableOpacity>
-              )}
-              contentContainerStyle={[styles.contentContainer,{paddingBottom:110}]}
-            />
-          
+          <FlatList
+            data={workOrders[0].wo}
+            keyExtractor={(item) => item.uuid} // Ensure each item has a unique key
+            renderItem={({ item }) => (
+              <TouchableOpacity >
+                <WorkOrderCard workOrder={item} />
+              </TouchableOpacity>
+            )}
+            contentContainerStyle={styles.contentContainer}
+          />
 
           {/* Animated Indicator */}
           {selectedWOIndex !== null && (

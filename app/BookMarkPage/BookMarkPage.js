@@ -1,21 +1,11 @@
-// app/Dashboard/Bookmarks.js
-import React from 'react';
-import { View, Text } from 'react-native';
-
-const Bookmarks = () => {
-
-
-
- 
-
+import React from 'react'
+import { View,Text } from 'react-native'
+const BookMarkPage = () => {
   return (
-    <View className="flex-1 items-center justify-center bg-white">
-      <Text className="text-2xl">Bookmarks</Text>
-    </View>
-  );
-};
+  <View>
+    <Text>Hello</Text>
+  </View>
+  )
+}
 
-export default Bookmarks;
-
-
-// StatuB
+export default BookMarkPage

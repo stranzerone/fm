@@ -14,11 +14,11 @@ console.log(email,password)
       identity: email,
       password: password,
     });
-
+console.log(response.data)
     // Debug: Log the full response to see the structure
 
     // Check if the response is successful (status 200)
-    if (response.status === 200) {
+    if (response.data.message === 'Login Successful.') {
       // Store the token and user info in AsyncStorage
       await AsyncStorage.setItem('userInfo', JSON.stringify(response));
       

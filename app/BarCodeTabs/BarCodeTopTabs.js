@@ -1,76 +1,77 @@
-import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import WOs from '../WoScreen/WorkOrdersScreen';
-import Details from '../WoDetails/WorkOrderDetailsScreen';
-const MainPage = () => {
-  const [activeTab, setActiveTab] = useState('WOs');  // Default tab is WOs
+// import React, { useState } from 'react';
+// import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView } from 'react-native';
+// import WOs from './WoScreen/WorkOrdersScreen';
+// import WoDetailsDrawer from '../WoDetails/WoDetailsDrawer/WoDetailsDrawerScreen';
 
-  // Function to render the content based on active tab
-  const renderContent = () => {
-    if (activeTab === 'WOs') {
-      return <WOs />;
-    } else {
-      return <Details />;
-    }
-  };
+// const MainPage = () => {
+//   const [activeTab, setActiveTab] = useState('WOs');  // Default tab is WOs
 
-  return (
-    <View style={styles.container}>
-      {/* Tab navigation at the top */}
-      <View style={styles.tabContainer}>
-        <TouchableOpacity
-          style={[styles.tab, activeTab === 'WOs' && styles.activeTab]}
-          onPress={() => setActiveTab('WOs')}
-        >
-          <Text style={[styles.tabText, activeTab === 'WOs' && styles.activeTabText]}>WOs</Text>
-        </TouchableOpacity>
+//   // Function to render the content based on active tab
+//   const renderContent = () => {
+//     if (activeTab === 'WOs') {
+//       return <WOs />;
+//     } else {
+//       return <WoDetailsDrawer />;
+//     }
+//   };
 
-        <TouchableOpacity
-          style={[styles.tab, activeTab === 'Details' && styles.activeTab]}
-          onPress={() => setActiveTab('Details')}
-        >
-          <Text style={[styles.tabText, activeTab === 'Details' && styles.activeTabText]}>Details</Text>
-        </TouchableOpacity>
-      </View>
+//   return (
+//     <SafeAreaView style={styles.container}>
+//       {/* Tab navigation at the top */}
+//       <View style={styles.tabContainer}>
+//         <TouchableOpacity
+//           style={[styles.tab, activeTab === 'WOs' && styles.activeTab]}
+//           onPress={() => setActiveTab('WOs')}
+//         >
+//           <Text style={[styles.tabText, activeTab === 'WOs' && styles.activeTabText]}>WOs</Text>
+//         </TouchableOpacity>
 
-      {/* Render content below tabs */}
-      <View style={styles.contentContainer}>
-        {renderContent()}
-      </View>
-    </View>
-  );
-};
+//         <TouchableOpacity
+//           style={[styles.tab, activeTab === 'Details' && styles.activeTab]}
+//           onPress={() => setActiveTab('Details')}
+//         >
+//           <Text style={[styles.tabText, activeTab === 'Details' && styles.activeTabText]}>Details</Text>
+//         </TouchableOpacity>
+//       </View>
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: 0,  // Adjust for status bar
-  },
-  tabContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    backgroundColor: '#074B7C',
-    paddingVertical: 10,
-  },
-  tab: {
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-  },
-  activeTab: {
-    borderBottomWidth: 3,
-    borderBottomColor: '#ffffff',
-  },
-  tabText: {
-    fontSize: 16,
-    color: '#ffffff',
-  },
-  activeTabText: {
-    fontWeight: 'bold',
-  },
-  contentContainer: {
-    flex: 1,
-    padding: 5,
-  },
-});
+//       {/* Render content below tabs */}
+//       <View style={styles.contentContainer}>
+//         {renderContent()}
+//       </View>
+//     </SafeAreaView>
+//   );
+// };
 
-export default MainPage;
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     paddingTop:0,  // Adjust for status bar
+//   },
+//   tabContainer: {
+//     flexDirection: 'row',
+//     justifyContent: 'space-around',
+//     backgroundColor: '#074B7C',
+//     paddingVertical: 10,
+//   },
+//   tab: {
+//     paddingVertical: 10,
+//     paddingHorizontal: 20,
+//   },
+//   activeTab: {
+//     borderBottomWidth: 3,
+//     borderBottomColor: '#ffffff',
+//   },
+//   tabText: {
+//     fontSize: 16,
+//     color: '#ffffff',
+//   },
+//   activeTabText: {
+//     fontWeight: 'bold',
+//   },
+//   contentContainer: {
+//     flex: 1,
+//     padding: 5,
+//   },
+// });
+
+// export default MainPage;

@@ -170,7 +170,7 @@ const styles = StyleSheet.create({
   loginButton: {
     width: Platform.OS === "ios" ? '80%' : "100%",
     padding: 14,
-    backgroundColor: '#1996D3',
+    backgroundColor: '#074B7C',
     borderRadius: 12,
     marginBottom: 16,
     alignItems: 'center',

@@ -89,7 +89,7 @@ const MyTabs = () => {
             right: 20,
             backgroundColor: '#1996D3',
             borderRadius: 20,
-            height: 70,
+            height: 50,
             ...styles.shadow, // Add shadow if necessary
             elevation: 5, // For Android shadow
           },
